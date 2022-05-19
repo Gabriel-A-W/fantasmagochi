@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Barrio" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link href="style.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="container-fluid fantasmainScreen">
+        <div class="row fantasmaHeader debugCol">
+            <div class="col-6">
+                <h1 class="fantasmaTitulo">Fantasmagochi</h1>
+            </div>
+            <div class="col-6 d-flex justify-content-end">
+                <div id="guitaTracker"> </div>
+            </div>
+        </div>
+        <div class="row debugCol" style="height: 89vh;">
+            <div class="col-2 p-0 debugCol d-flex flex-column justify-content-center">
+                <div>
+                    <div id="birratracker" data-bs-toggle="modal" data-bs-target="#exampleModal"> </div>
+                    <div id="morfitracker"> </div>
+                    <div id="tualetracker"> </div>
+                    <div id="cansanciotracker"> </div>
+                </div>
+            </div>
+            <div id="juancho" class="col-8 align-self-end d-flex justify-content-center align-items-center fantasmaBox">
+            </div>
+            <div class="col-2 p-0 debugCol d-flex  justify-content-end">
+            <div>
+            <!--
+            <img class="btn-emoji sombreado rounded-start border-start border-top border-bottom border-3 bg-success" src="emojis/1f642.svg">
+            <img class="btn-emoji sombreado rounded-start border-start border-top border-bottom border-3 bg-success" src="emojis/1f374.svg">
+            <img class="btn-emoji sombreado rounded-start border-start border-top border-bottom border-3 bg-success" src="emojis/1f634.svg">
+            -->
+            </div>
+                
+            </div>
+        </div>
+
+
+    </div> <!-- Inner row -->
+
+
+
+    </div> <!-- Outer container -->
+
+
+
+    <!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body" style="height: 50vh;">
+          ...
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+        crossorigin="anonymous"></script>
+    <script src="scripts/main.js"></script>
+
+</body>
+
+</html>

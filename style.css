@@ -1,0 +1,429 @@
+html,
+body {
+    height: 100vh;
+    width: 100vw;
+    background-color: black;
+}
+
+.fantasmaTitulo {
+    color: white;
+    font-family: 'Barrio', cursive;
+}
+
+.fantasmaHeader {
+    height: 10vh;
+}
+
+.fantasmainScreen {
+    height: 100vh;
+    width: 50vw;
+    /* border: 2px solid red;*/
+    background-image: url("http://orig08.deviantart.net/0a43/f/2012/262/6/7/grand_entry_hall_by_sanfranguy-d5f95h2.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    min-height: 480px;
+    min-width: 480px;
+
+}
+
+
+.debugCol {
+/* border: 1px solid green;*/
+}
+
+
+.fanstamaBtnEmoji:hover {
+    cursor: pointer;
+    text-shadow: 0 0 20px rgba(0, 102, 156, 1);
+}
+
+.fanstamaBtnEmoji:active {
+    text-shadow: 0 0 20px rgba(255, 0, 0, 1);
+}
+
+.animFader {
+    animation: fader 2s linear infinite;
+}
+
+.animFader.fast {
+    animation: fader 1s linear infinite;
+}
+
+@keyframes fader {
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.5;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+ 
+.statusTracker {
+    font-size: 50px;
+    position: relative;
+    height: 67px;
+    width: 69px;
+    margin-bottom: 5px;
+    background: linear-gradient(rgba(255, 0, 0, 0.8), rgba(70, 6, 6, 0.8));/* rgba(220, 53, 69, 0.5);*/
+    cursor: pointer;
+}
+
+.statusTracker .fg {
+    position: absolute;
+    opacity: 0.3;
+    bottom: 0;
+    user-select: none;
+}
+
+.statusTracker .bar {
+    position: absolute;
+    width: 100%;
+    height: 50%;
+    overflow: hidden;
+    bottom: 0;
+    background-color: rgba(26, 155, 37, 0.6);
+    user-select: none;
+}
+
+.statusTracker .bar div {
+    position: absolute;
+    bottom: 0;
+    user-select: none;
+}
+
+.statusTrackerIcon
+{
+    width: 100%;
+    height: 100%;
+}
+
+
+.guitaBox
+{
+    background: linear-gradient(rgba(238, 255, 0, 0.8), rgba(118, 126, 3, 0.8))!important;
+    user-select: none;
+}
+
+.guitSigno
+{
+    height: 1.5rem;
+    width: 1.5rem;
+    user-select: none;
+}
+
+
+.sombreado
+{
+    box-shadow: 0 1rem 1rem rgba(0,0,0,1);
+}
+
+.fantasmaBox {
+    /* width:20vw;*/
+    height: 60vh;
+    /* border: 1px solid blue;*/
+    min-height: 200px;
+    min-width: 140px;
+}
+
+
+
+
+.fantasma {
+
+    width: 100px;
+    left: 45%;
+    top: 45%;
+    opacity: 0.8;
+}
+
+
+.fantasma .cuerpo {
+    border-radius: 50px 50px 0 0;
+    background: #73AD21;
+    width: 100%;
+    height: 150px;
+    position: relative;
+
+}
+
+
+.fantasma .cuerpo.enojado {
+    background: linear-gradient(red, #73AD21);
+}
+
+.fantasma .cuerpo.muerto {
+    background: linear-gradient(lightblue, #73AD21);
+}
+
+
+
+.fantasma .cuerpo .ojos {
+    top: 20px;
+    position: relative;
+    height: 30px;
+    width: 100%;
+    /*  background:#000;*/
+    display: -webkit-flex;
+    display: flex;
+
+}
+
+
+.fantasma .cuerpo .ojos .izquierdo {
+
+    border-radius: 50px 50px 50px 50px;
+    background: #fff;
+    width: 20%;
+    height: 30px;
+    border: 1px solid;
+    border-color: #000;
+    left: 20%;
+    position: relative;
+    overflow: hidden;
+}
+
+.fantasma .cuerpo .ojos .izquierdo.muerto {
+    background: none;
+    border: none;
+}
+
+.fantasma .cuerpo .ojos .izquierdo.muerto:after {
+    content: "X";
+    position: absolute;
+    left: 25%;
+    top: 5px;
+}
+
+.fantasma .cuerpo .ojos .izquierdo.cerrado {
+    height: 8px;
+
+    top: 15px;
+    border: none;
+    border-radius: 0 0 50px 50px;
+    border-bottom: 1px solid;
+    background: none;
+}
+
+
+
+
+.fantasma .cuerpo .ojos .derecho {
+
+    border: 1px solid;
+    border-radius: 50px 50px 50px 50px;
+    background: #fff;
+    width: 20%;
+    height: 30px;
+    left: 40%;
+    position: relative;
+    overflow: hidden;
+}
+
+
+.fantasma .cuerpo .ojos .derecho.muerto {
+    background: none;
+    border: none;
+}
+
+.fantasma .cuerpo .ojos .derecho.muerto:after {
+    content: "X";
+    position: absolute;
+    left: 25%;
+    top: 5px;
+}
+
+
+.fantasma .cuerpo .ojos .derecho.cerrado {
+    height: 8px;
+
+    top: 15px;
+    border: none;
+    border-radius: 0 0 50px 50px;
+    border-bottom: 1px solid;
+    background: none;
+}
+
+
+.fantasma .cuerpo .ojos .iris {
+    border-radius: 50px 50px 50px 50px;
+    background: #000;
+    top: 5px;
+    left: 25%;
+    width: 50%;
+    height: 20px;
+    position: absolute;
+}
+
+.fantasma .cuerpo .ojos .iris.cerrado {
+    display: none;
+
+}
+
+
+.fantasma .cuerpo .boca {
+
+    border-radius: 0px 0px 50px 50px;
+    background: #000;
+    top: 60px;
+    left: 25%;
+    width: 50%;
+    height: 15%;
+    position: absolute;
+}
+
+.bocaPlaceHolder
+{
+    height: 75px;
+    width: 75px;
+}
+
+
+.fantasma .cuerpo .boca.triste {
+    border-radius: 50px 50px 0px 0px;
+    border-top: 1px solid;
+    background: none;
+    height: 15%;
+}
+
+.fantasma .cuerpo .boca.sonrisa {
+    border-radius: 0px 0px 50px 50px;
+    border-bottom: 1px solid;
+    background: none;
+    height: 15%;
+}
+
+.fantasma .cuerpo .boca.cerrada {
+    height: 2px;
+}
+
+.fantasma .cuerpo .boca.sorpresa {
+    border-radius: 50px 50px 0px 0px;
+}
+
+.fantasma .pies {
+    width: 100%;
+    height: 30px;
+    position: relative;
+    overflow: hidden;
+    /* background:black;*/
+}
+
+.fantasma .pies .patita {
+    border-radius: 0px 0px 80px 80px;
+    background: #73AD21;
+    width: 20px;
+    height: 30px;
+    position: relative;
+
+}
+
+.fantasma .pies .animador-delantero {
+    display: -webkit-flex;
+    display: flex;
+    margin: 0px;
+    position: absolute;
+    animation: marquee 1s linear infinite;
+}
+
+.fantasma .pies .animador-delantero.muerto {
+    animation-play-state: paused
+}
+
+
+
+.fantasma .pies .animador-trasero {
+    display: -webkit-flex;
+    display: flex;
+    margin: 0px;
+    position: absolute;
+
+    z-index: -1;
+    animation: marquee2 1s linear infinite;
+}
+
+
+.fantasma .pies .animador-trasero.muerto {
+    animation-play-state: paused
+}
+
+
+@keyframes marquee {
+    0% {
+        transform: translate(0, 0);
+    }
+
+    50% {
+        transform: translate(-30%, 0);
+    }
+
+    100% {
+        transform: translate(0, 0);
+    }
+}
+
+@keyframes marquee2 {
+    0% {
+        transform: translate(0, 0);
+    }
+
+    50% {
+        transform: translate(30%, 0);
+    }
+
+    100% {
+        transform: translate(0, 0);
+    }
+}
+
+.cacona
+{     
+    height: 5rem;
+    width: 5rem;
+}
+
+.anim-fader
+{
+    animation: fader 1s linear infinite;
+}
+.anim-fader.fast
+{
+    animation: fader 1s linear infinite;
+}
+
+@keyframes fader {
+  /*  0%   {  box-shadow: 0 0 20px rgba(0,102,156, 1); }*/
+ 50%{ box-shadow: 0 0 20px rgba(255,0,0, 1); border-color: red!important; }    
+   /*/ 100%  { opacity: 1; }*/
+}
+
+
+.btn-emoji
+{
+ 
+   height: 2rem;
+   width: 2rem;
+   display: block;
+   position:relative;
+  user-select:none;
+  margin-bottom: 5px;
+}
+
+
+
+
+.btn-emoji:hover
+{
+   cursor: pointer;
+  box-shadow: 0 0 20px rgba(0,102,156, 1);
+}
+
+.btn-emoji:active
+{
+    box-shadow: 0 0 20px rgba(255,0,0, 1);
+}
