@@ -10,41 +10,41 @@ import { EstadoMuerto } from "./estados/EstadoMuerto.js";
 import { EstadoCacona } from "./estados/EstadoCacona.js";
 import { EmojiRepo } from "../../utiles/EmojiRepo.js";
 import { Estadistica } from "./Estadistica.js";
+import { HtmlElementBuilder } from "../../utiles/HtmlElementBuilder.js";
 
  
-export class Fantasma extends Actualizable {
+export class Fantasma extends Actualizable 
+{
 
-    constructor(parent) 
+    constructor(parent, statsIniciales) 
     {
         super();
         
         this.tristezaRatio = -5 / 1000;
         
-        this.felicidad = new Estadistica(100, 0);
-        this.saciedad = new Estadistica(50, -1.5/1000);
-        this.espacioEnPanza = new Estadistica(0, 0);
-        this.energia = new Estadistica(100, -1/1000);
-        this.guita = new Estadistica(9999, 0);
+        this.felicidad = new Estadistica(statsIniciales.felicidad, 0);
+        this.saciedad = new Estadistica(statsIniciales.saciedad, -1.5/1000);
+        this.espacioEnPanza = new Estadistica(statsIniciales.espacioEnPanza, 0);
+        this.energia = new Estadistica(statsIniciales.energia, -1/1000);
+        this.guita = new Estadistica(statsIniciales.guita, 0);
 
         this.registrarHijo(this.felicidad, this.saciedad, this.espacioEnPanza, this.energia);
 
-        this.elementoHtml = document.createElement("div");
-        this.elementoHtml.classList.add("fantasma");
-
+        this.elementoHtml = new HtmlElementBuilder("div").addClass("fantasma").get();
         this.cuerpo = new FantasmaCuerpo(this.elementoHtml);
         this.ojos = new FantasmaOjoCollection(this.cuerpo.elementoHtml);
         this.boca = new FantasmaBoca(this.cuerpo.elementoHtml);
         this.pies = new FantasmaPies(this.elementoHtml);
 
-        parent.appendChild(this.elementoHtml);
-
         this.popo = EmojiRepo.crearImgElement("💩", true);
         this.popo.className = "position-absolute cacona invisible";
         
+        this.estado = null;
+
         this.elementoHtml.appendChild(this.popo);
 
 
-
+        parent.appendChild(this.elementoHtml);
         
         this.idle();
     }
@@ -53,32 +53,31 @@ export class Fantasma extends Actualizable {
     {
         if(visible)
         {
-            if(this.popo.classList.contains("invisible"))
-            {
-                this.popo.classList.remove("invisible");
-            }
+            this.popo.classList.remove("invisible");   
         }
         else
         {
-            if(!this.popo.classList.contains("invisible"))
-            {
-                this.popo.classList.add("invisible");
-            }
+            this.popo.classList.add("invisible");
         }
     }
 
+    puedeTransicionar()
+    {
+        return !this.estado || this.estado.puedeTransicionar();
+    }
 
     intentarAsignarEstado(nuevoEstado, forzar = false)
     {
-        if(typeof(nuevoEstado) === "object" && (forzar || !this.estado || this.estado.puedeTransicionar()))
+        let rv = false;
+        if(typeof(nuevoEstado) === "object" && (forzar || this.puedeTransicionar()))
         {
             this.estado && this.estado.finalizar();
             this.estado = nuevoEstado;
             this.estado.iniciar();
-            return true;
+            rv = true;
         }        
 
-        return false;
+        return rv;
     }
 
     idle()

@@ -1,4 +1,5 @@
 import { Actualizable } from "../../../Actualizable.js";
+import { HtmlElementBuilder } from "../../../utiles/HtmlElementBuilder.js";
 
 export class FantasmaCuerpo extends Actualizable
 {
@@ -6,35 +7,20 @@ export class FantasmaCuerpo extends Actualizable
     constructor(parent)
     {
         super();
-        this.elementoHtml = document.createElement("div");
-        this.elementoHtml.classList.add("cuerpo");
- 
+        this.elementoHtml = new HtmlElementBuilder("div").addClass("cuerpo").get();
+
         parent.appendChild(this.elementoHtml);
     }
 
 
     toggleEnojo()
     {
-        if(!this.elementoHtml.classList.contains("enojado"))
-        {
-            this.elementoHtml.classList.add("enojado");
-        }
-        else
-        {
-            this.elementoHtml.classList.remove("enojado");
-        }
+        this.elementoHtml.classList.toggle("enojado");
     }
 
     toggleMuerto()
     {
-        if(!this.elementoHtml.classList.contains("muerto"))
-        {
-            this.elementoHtml.classList.add("muerto");
-        }
-        else
-        {
-            this.elementoHtml.classList.remove("muerto");
-        }
+        this.elementoHtml.classList.toggle("muerto");
     }
 
 }

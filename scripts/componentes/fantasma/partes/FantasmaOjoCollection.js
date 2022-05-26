@@ -1,15 +1,18 @@
 
 import { Actualizable } from "../../../Actualizable.js";
+import { HtmlElementBuilder } from "../../../utiles/HtmlElementBuilder.js";
 import { EstadoOjoFantasma, FantasmaOjo } from "./FantasmaOjo.js";
 
-export class FantasmaOjoCollection extends Actualizable {
+export class FantasmaOjoCollection extends Actualizable 
+{
 
-    constructor(parent) {
+    constructor(parent) 
+    {
         super();
-        this.elementoHtml = document.createElement("div");
+        this.elementoHtml = new HtmlElementBuilder("div").addClass("ojos").get();
         this.izquierdo = new FantasmaOjo(this.elementoHtml, "izquierdo");
         this.derecho = new FantasmaOjo(this.elementoHtml, "derecho");
-        this.elementoHtml.classList.add("ojos");
+        
         parent.appendChild(this.elementoHtml);
 
         //Registro hijos

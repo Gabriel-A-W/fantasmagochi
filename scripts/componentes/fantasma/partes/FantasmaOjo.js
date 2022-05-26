@@ -1,41 +1,41 @@
 import { Actualizable } from "../../../Actualizable.js";
 import { Enum } from "../../../utiles/Enum.js";
+import { HtmlElementBuilder } from "../../../utiles/HtmlElementBuilder.js";
 
 export const EstadoOjoFantasma = new Enum("Abierto", "Cerrado", "Muerto");
 
 export class FantasmaOjo extends Actualizable
 {
 
-    constructor(parent, tipo) {
+    constructor(parent, tipo) 
+    {
         super();
         this.estado = EstadoOjoFantasma.Abierto;
 
-
-
-        this.elementoHtml = document.createElement("div");
-        this.elementoHtml.classList.add(tipo);
-        this.iris = document.createElement("div");
-        this.iris.classList.add("iris");
-        this.elementoHtml.appendChild(this.iris);
-
+        this.iris = new HtmlElementBuilder("div").addClass("iris").get();
+        this.elementoHtml = new HtmlElementBuilder("div").addClass(tipo).appendChild(this.iris).get();
+    
         parent.appendChild(this.elementoHtml);
     }
 
-    abrir() {
+    abrir() 
+    {
         this.iris.classList.remove("invisible");
         this.elementoHtml.classList.remove("cerrado");
         this.elementoHtml.classList.remove("muerto");
         this.estado = EstadoOjoFantasma.Abierto;
     }
 
-    cerrar() {
+    cerrar() 
+    {
         this.abrir();
         this.iris.classList.add("invisible");
         this.elementoHtml.classList.add("cerrado");
         this.estado = EstadoOjoFantasma.Cerrado;
     }
 
-    matar() {
+    matar() 
+    {
         this.abrir();
         this.iris.classList.add("invisible");
         this.elementoHtml.classList.add("muerto");

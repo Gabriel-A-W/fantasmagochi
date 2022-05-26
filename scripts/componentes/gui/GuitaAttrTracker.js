@@ -1,5 +1,6 @@
 import { AttrTracker } from "./AttrTracker.js";
 import {EmojiRepo } from "../../utiles/EmojiRepo.js";
+import { HtmlElementBuilder } from "../../utiles/HtmlElementBuilder.js";
 
 export class GuitaAttrTracker extends AttrTracker
 {
@@ -17,34 +18,34 @@ export class GuitaAttrTracker extends AttrTracker
         
         this.asingnarOpts(opts);
 
-        let divElem = document.createElement("div");
-        divElem.className = "d-inline-flex bd-highlight mb-1";
-        this.elementoHtml.className = "sombreado guitaBox p-2 mb-5 bg-warning border-bottom border-start border-end border-dark rounded-bottom";
-    
-        this.guitaHolder = document.createElement("span");
-        this.guitaHolder.className = "badge bg-black";
-
-        let otroDiv = document.createElement("div");
-        otroDiv.appendChild(this.crearIcono("💲"));
-        divElem.appendChild(otroDiv);
-        otroDiv = document.createElement("div");
-        
-        otroDiv.appendChild(this.guitaHolder);
-        divElem.appendChild(otroDiv);
-
         this.cachedValue = this.valor;
-        this.guitaHolder.innerText = this.opts.numberformatter.format(this.cachedValue);
-        this.elementoHtml.appendChild(divElem);
 
-        this.elementoHtml.setAttribute("data-bs-toggle","tooltip");
+     
+        this.guitaHolder = new HtmlElementBuilder("span").addClass("badge", "bg-black")
+                           .setInnerText(this.opts.numberformatter.format(this.cachedValue)).get();
         
-        this.elementoHtml.setAttribute("data-bs-placement","left");
-        this.elementoHtml.setAttribute("title","Guita");
+        let divElem = new HtmlElementBuilder("div").addClass("d-inline-flex", "bd-highlight", "mb-1")
+                        .appendChild(new HtmlElementBuilder("div").appendChild(this.crearIcono("💲")).get())
+                        .appendChild(new HtmlElementBuilder("div").appendChild(this.guitaHolder).get())
+                        .get();
+ 
+        new HtmlElementBuilder(this.elementoHtml)
+        .addClass("sombreado",
+                  "guitaBox", 
+                  "p-2", 
+                  "mb-5", 
+                  "bg-warning", 
+                  "border-bottom", 
+                  "border-start", 
+                  "border-end", 
+                  "border-dark",
+                  "rounded-bottom")
+         .setAttribute("data-bs-toggle","tooltip")
+         .setAttribute("data-bs-placement","left")
+         .setAttribute("title","Guita")
+         .appendChild(divElem);
 
         new bootstrap.Tooltip(this.elementoHtml);
-
-        
-
     }
 
 

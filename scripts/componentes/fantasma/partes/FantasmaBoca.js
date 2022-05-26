@@ -1,6 +1,7 @@
 import { Actualizable } from "../../../Actualizable.js";
 import { EmojiRepo } from "../../../utiles/EmojiRepo.js";
 import {Enum} from "../../../utiles/Enum.js";
+import { HtmlElementBuilder } from "../../../utiles/HtmlElementBuilder.js";
 
 export const EstadoBocaFantasma = new Enum("Abierta", "Cerrada", "Triste", "Sonrisa", "Sorpresa");
 
@@ -9,18 +10,15 @@ export class FantasmaBoca extends Actualizable
     constructor(parent)
     {
         super();
-        let placeHolderDiv = document.createElement("div");
-        
-        placeHolderDiv.className = "position-absolute top-0 start-100 translate-middle";
-        
+ 
+        this.placeHolder = new HtmlElementBuilder("img").addClass("bocaPlaceHolder", "invisible").get();
+        this.elementoHtml = new HtmlElementBuilder("div").appendChild(new HtmlElementBuilder("div").addClass("position-absolute", 
+                                                                    "top-0", 
+                                                                    "start-100", 
+                                                                    "translate-middle")
+                                                                    .appendChild(this.placeHolder).get()).get();
 
         this.estado = EstadoBocaFantasma.Cerrada;
-        this.elementoHtml = document.createElement("div");
-        this.elementoHtml.appendChild(placeHolderDiv);
-        this.placeHolder = document.createElement("img");
-        this.placeHolder.className = "bocaPlaceHolder invisible";
-        placeHolderDiv.appendChild(this.placeHolder);
-        
         parent.appendChild(this.elementoHtml);
         this.reset();
     }
@@ -38,18 +36,12 @@ export class FantasmaBoca extends Actualizable
 
     mostrarPlaceHolder()
     {
-        if(this.placeHolder.classList.contains("invisible"))
-        {
-            this.placeHolder.classList.remove("invisible");
-        }
+        this.placeHolder.classList.remove("invisible");
     }
 
     esconderPlaceHolder()
     {
-        if(!this.placeHolder.classList.contains("invisible"))
-        {
-            this.placeHolder.classList.add("invisible");
-        }
+        this.placeHolder.classList.add("invisible");
     }
 
     reset()

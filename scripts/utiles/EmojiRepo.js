@@ -1,3 +1,5 @@
+import { HtmlElementBuilder } from "./HtmlElementBuilder.js";
+
 class EmojiRepoSingleton
 {
     constructor()
@@ -7,15 +9,13 @@ class EmojiRepoSingleton
 
     getSvgUrl(emojistr, usarColor)
     {
-          let codepointstr = emojistr.codePointAt(0).toString(16).toUpperCase();
+        let codepointstr = emojistr.codePointAt(0).toString(16).toUpperCase();
         return `https://openmoji.org/data/${usarColor?"color":"black"}/svg/${codepointstr}.svg`;
     }
 
     crearImgElement(emojistr, usarColor = false)
     {
-        let img = document.createElement("img");
-        img.src = this.getSvgUrl(emojistr, usarColor);
-        return  img;
+        return new HtmlElementBuilder("img").setAttribute("src", this.getSvgUrl(emojistr, usarColor)).get();
     }
 }
 

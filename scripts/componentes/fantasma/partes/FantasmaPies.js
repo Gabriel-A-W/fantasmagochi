@@ -1,30 +1,23 @@
 import { Actualizable } from "../../../Actualizable.js";
+import { HtmlElementBuilder } from "../../../utiles/HtmlElementBuilder.js";
 
 export class FantasmaPies extends Actualizable
 {
     constructor(parent)
     {
         super();
-        this.elementoHtml = document.createElement("div");
-        this.elementoHtml.classList.add("pies");
         
-        this.animadorPiesDelantero = document.createElement("div");
-        this.animadorPiesTrasero = document.createElement("div");
         
-        this.animadorPiesDelantero.classList.add("animador-delantero");
-        this.animadorPiesTrasero.classList.add("animador-trasero");
-      
-
+        this.animadorPiesDelantero =  new HtmlElementBuilder("div").addClass("animador-delantero").get();
+        this.animadorPiesTrasero =  new HtmlElementBuilder("div").addClass("animador-trasero").get();
+ 
         this.patitasDelanteras = [];
         this.patitasTraseras = [];
         
         for(let i = 0; i < 9; i++ )
         {
-          let patitaDelantera = document.createElement("div");
-          let patitaTrasera = document.createElement("div");
-          
-          patitaDelantera.classList.add("patita");
-          patitaTrasera.classList.add("patita");
+          let patitaDelantera = new HtmlElementBuilder("div").addClass("patita").get();
+          let patitaTrasera = new HtmlElementBuilder("div").addClass("patita").get();
         
           this.animadorPiesDelantero.appendChild(patitaDelantera);
           this.animadorPiesTrasero.appendChild(patitaTrasera);
@@ -33,11 +26,13 @@ export class FantasmaPies extends Actualizable
           this.patitasTraseras.push(patitaTrasera);
         }
 
-        this.elementoHtml.appendChild(this.animadorPiesTrasero);
-        this.elementoHtml.appendChild(this.animadorPiesDelantero);
 
+        this.elementoHtml = new HtmlElementBuilder("div").addClass("pies")
+        .appendChild(this.animadorPiesTrasero)
+        .appendChild(this.animadorPiesDelantero)
+        .get();
+        
         parent.appendChild(this.elementoHtml);
-
     }
     
 }
