@@ -1,5 +1,5 @@
 let fantasmaDebug;
-import("./MainModule.js").then((modulo) => {
-     fantasmaDebug = modulo.Main(); 
+import("./MainModule.js").then(async (modulo) => {
+     fantasmaDebug = await modulo.Main(); 
 });
  

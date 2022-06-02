@@ -14,6 +14,11 @@ export class AttrTracker extends Actualizable
         parentHtml.appendChild(this.elementoHtml);
     }
 
+    addEventListener(...params)
+    {
+        this.elementoHtml.addEventListener(...params);
+    }
+
     asingnarOpts(opts)
     {
         if(typeof(opts) !== "object")

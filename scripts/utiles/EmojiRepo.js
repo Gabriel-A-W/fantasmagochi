@@ -10,6 +10,7 @@ class EmojiRepoSingleton
     getSvgUrl(emojistr, usarColor)
     {
         let codepointstr = emojistr.codePointAt(0).toString(16).toUpperCase();
+        console.log(codepointstr);
         return `https://openmoji.org/data/${usarColor?"color":"black"}/svg/${codepointstr}.svg`;
     }
 

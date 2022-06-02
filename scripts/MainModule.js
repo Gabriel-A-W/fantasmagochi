@@ -5,35 +5,41 @@ import { GuitaAttrTracker } from "./componentes/gui/GuitaAttrTracker.js";
 import { FantasDataService } from "./servicios/FantasDataService.js";
 import { FantasDataSaver } from "./componentes/FantasDataSaver.js";
 
-export const Main = ()=>
+export const Main = async ()=>
 {
-    FantasDataService.get().then((data) => {
-        let fantasma = new Fantasma(document.getElementById("juancho"), data);
-        document.getElementById("tualetracker").addEventListener("click", () => {
-            fantasma.hacerPopo();
-        });
-    
-        document.getElementById("cansanciotracker").addEventListener("click", () => {
-            fantasma.dormir();
-        });
-    
-        document.getElementById("morfitracker").addEventListener("click", () => {
-            fantasma.alimentar({grafico:"🌭", saciedad: 50, ocupa: 80});
-        });
+    const data = await FantasDataService.get();
+  
+    const fantasma         = new Fantasma(document.getElementById("juancho"), data);
+    const guitaTracker     = new GuitaAttrTracker(document.getElementById("guitatracker"), fantasma.guita);
+    const morfiTracker     = new BarAttrTracker(document.getElementById("morfitracker"), fantasma.saciedad, {text:"🍴", tip:"Hambre"});
+    const tualeTracker     = new BarAttrTracker(document.getElementById("tualetracker"), fantasma.espacioEnPanza, {text:"🚽", tip:"Ganas de ir"});
+    const cansancioTracker = new BarAttrTracker(document.getElementById("cansanciotracker"), fantasma.energia, {text:"💤",  tip:"Energia"});
+    const felicidadTracker = new BarAttrTracker(document.getElementById("felicidadtracker"), fantasma.felicidad,  {text:"🙂", tip:"Felicidad"});
+    const fantasDataSaver  = new FantasDataSaver(fantasma);
 
-        GameManager.actualizables.push(fantasma);
-        GameManager.actualizables.push(
-            new BarAttrTracker(document.getElementById("birratracker"), fantasma.felicidad,  {text:"🙂", tip:"Felicidad"}),
-            new BarAttrTracker(document.getElementById("morfitracker"), fantasma.saciedad, {text:"🍴", tip:"Hambre"}),
-            new BarAttrTracker(document.getElementById("tualetracker"), fantasma.espacioEnPanza, {text:"🚽", tip:"Ganas de ir"}),
-            new BarAttrTracker(document.getElementById("cansanciotracker"), fantasma.energia, {text:"💤",  tip:"Energia"}),
-            new GuitaAttrTracker(document.getElementById("guitaTracker"), fantasma.guita),
-            new FantasDataSaver(fantasma)
-        );
-        console.log(GameManager);
-        GameManager.comenzar();
-
-
-
+    tualeTracker.addEventListener("click", () => {
+        fantasma.hacerPopo();
     });
+    
+    cansancioTracker.addEventListener("click", () => {
+        fantasma.dormir();
+    });
+    
+    morfiTracker.addEventListener("click", () => {
+        fantasma.alimentar({grafico:"🌭", saciedad: 50, ocupa: 80});
+    });
+
+     
+    GameManager.actualizables.push(fantasma,
+        felicidadTracker,
+        morfiTracker,
+        tualeTracker,
+        cansancioTracker,
+        guitaTracker,
+        fantasDataSaver
+    );
+    console.log(GameManager);
+    GameManager.comenzar();
+
+    return fantasma;
 };
