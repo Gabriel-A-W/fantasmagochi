@@ -22,11 +22,11 @@ export class Fantasma extends Actualizable
         
         this.tristezaRatio = -5 / 1000;
         
-        this.felicidad = new Estadistica(statsIniciales.felicidad, 0);
+        this.felicidad = new Estadistica(100, 0);
         this.saciedad = new Estadistica(statsIniciales.saciedad, -1.5/1000);
         this.espacioEnPanza = new Estadistica(statsIniciales.espacioEnPanza, 0);
         this.energia = new Estadistica(statsIniciales.energia, -1/1000);
-        this.guita = new Estadistica(statsIniciales.guita, 0);
+        this.guita = new Estadistica(statsIniciales.guita, 0, 0, Number.MAX_SAFE_INTEGER);
 
         this.registrarHijo(this.felicidad, this.saciedad, this.espacioEnPanza, this.energia);
 
@@ -118,6 +118,7 @@ export class Fantasma extends Actualizable
     {
         super.actualizar(elapsed);
         this.estado && this.estado.actualizar(elapsed);
+        this.felicidad.valor = (this.energia.valor + this.saciedad.valor + this.espacioEnPanza.valor)/3;
     }
  
 

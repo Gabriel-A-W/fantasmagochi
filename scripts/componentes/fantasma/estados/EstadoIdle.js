@@ -70,8 +70,7 @@ export class EstadoIdle extends Estado
     
             unOjo.iris.style = estilo;
 
-        }
-        );
+        });
     }
 
     actualizar(elapsed) 
@@ -83,16 +82,14 @@ export class EstadoIdle extends Estado
         {
             this.fantasma.boca.sonreir();
         }
-        else if(this.fantasma.felicidad.valor < 20)
+        else if(this.fantasma.felicidad.valor < 50)
         {
             this.fantasma.boca.entristecer();
         }
         else
         {
             this.fantasma.boca.cerrar();
-        }
-
-        
+        } 
     }
 }
 

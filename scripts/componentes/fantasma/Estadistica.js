@@ -6,11 +6,12 @@ export class Estadistica extends Actualizable
     constructor(valorInicial, puntoPorTick, min = 0, max = 100)
     {
         super();
-        this._valor = valorInicial;
+         
         this.frenarActualizacion = false;
         this.puntoPorTick = puntoPorTick;
         this.min = min;
         this.max = max;
+        this.valor = valorInicial;
     }
 
    

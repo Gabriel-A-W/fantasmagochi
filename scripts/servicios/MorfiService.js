@@ -1,4 +1,4 @@
-const MORFI_URL = "";
+const MORFI_URL = "db.json";
 class MorfiServiceSingleton
 {
 
@@ -10,9 +10,13 @@ class MorfiServiceSingleton
     async get()
     {
         const response = await fetch(MORFI_URL);
-        const json = await response.json();
-    
-        return JSON.parse(json);
+        const responseJson = await response.json();
+        //GAW: Me dio ""flojera"" agregarle el id al json, va a mano.
+        responseJson.morfi.forEach((element, i) => {
+            element.id = i+1;
+        });
+
+        return responseJson.morfi;
     }
   
 }

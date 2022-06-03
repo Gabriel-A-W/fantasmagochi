@@ -4,8 +4,7 @@ class FantasDataServiceSingleton
     constructor()
     {
         this.storeAddr = "fantasDS";
-        this.defaultVal = {
-            felicidad: 100,
+        this.defaultVal = { 
             saciedad: 100,
             espacioEnPanza: 100,
             energia:100,

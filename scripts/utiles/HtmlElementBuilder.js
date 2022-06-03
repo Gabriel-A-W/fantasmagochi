@@ -2,6 +2,7 @@ export class HtmlElementBuilder
 {
     constructor(v)
     {
+        console.log(v);
         if(typeof(v) === "string")
         {
             this.elemento = document.createElement(v);
@@ -12,6 +13,13 @@ export class HtmlElementBuilder
         }
         
     }
+
+    static fromTemplate(strTemplate)
+    {
+        const rv = document.createRange().createContextualFragment(strTemplate).firstChild;
+        return new HtmlElementBuilder(rv);
+    }
+
 
     setId(id)
     {
