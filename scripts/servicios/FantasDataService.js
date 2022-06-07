@@ -16,11 +16,13 @@ class FantasDataServiceSingleton
     internalGet()
     {
         let v = localStorage.getItem(this.storeAddr);
+        //Si hay valor almacenado en el localstorage, usar ese
         if(v)
         {
             return JSON.parse(v);
         }
         
+        //Si no, guardo el default en el localstorage y retorno una copia
         this.internalSet(this.defaultVal);
         return Object.assign({}, this.defaultVal);
     }

@@ -5,9 +5,20 @@ export class Actualizable
         this.hijos = [];
     }
 
-    registrarHijo(...hijos)
+    registrarHijos()
     {
-        this.hijos.push(...hijos);
+        Object.entries(this).forEach((e) => 
+        {
+            const valor = e[1];
+            if (valor instanceof Actualizable)
+            {
+                this.hijos.push(valor);
+                
+                
+            }
+        });
+        
+        
     }
 
     actualizar(elapsed) 

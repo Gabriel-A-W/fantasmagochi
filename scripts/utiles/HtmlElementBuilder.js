@@ -2,7 +2,7 @@ export class HtmlElementBuilder
 {
     constructor(v)
     {
-        console.log(v);
+    
         if(typeof(v) === "string")
         {
             this.elemento = document.createElement(v);

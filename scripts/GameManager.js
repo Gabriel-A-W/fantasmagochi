@@ -1,9 +1,6 @@
 
 class GameManagerSingleton
 {
-
-
-
     constructor()
     {
         this.lastUpdate = Date.now();

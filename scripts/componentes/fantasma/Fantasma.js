@@ -11,7 +11,8 @@ import { EstadoCacona } from "./estados/EstadoCacona.js";
 import { EmojiRepo } from "../../utiles/EmojiRepo.js";
 import { Estadistica } from "./Estadistica.js";
 import { HtmlElementBuilder } from "../../utiles/HtmlElementBuilder.js";
-
+import { Configs } from "../../Configs.js";
+import { Estado } from "./estados/Estado.js";
  
 export class Fantasma extends Actualizable 
 {
@@ -23,12 +24,10 @@ export class Fantasma extends Actualizable
         this.tristezaRatio = -5 / 1000;
         
         this.felicidad = new Estadistica(100, 0);
-        this.saciedad = new Estadistica(statsIniciales.saciedad, -1.5/1000);
+        this.saciedad = new Estadistica(statsIniciales.saciedad, Configs.DELTA_SACIEDAD);
         this.espacioEnPanza = new Estadistica(statsIniciales.espacioEnPanza, 0);
-        this.energia = new Estadistica(statsIniciales.energia, -1/1000);
-        this.guita = new Estadistica(statsIniciales.guita, 0, 0, Number.MAX_SAFE_INTEGER);
-
-        this.registrarHijo(this.felicidad, this.saciedad, this.espacioEnPanza, this.energia);
+        this.energia = new Estadistica(statsIniciales.energia, Configs.DELTA_ENERGIA);
+        this.guita = new Estadistica(statsIniciales.guita, Configs.DELTA_GUITA, 0, Number.MAX_SAFE_INTEGER);
 
         this.elementoHtml = new HtmlElementBuilder("div").addClass("fantasma").get();
         this.cuerpo = new FantasmaCuerpo(this.elementoHtml);
@@ -38,14 +37,13 @@ export class Fantasma extends Actualizable
 
         this.popo = EmojiRepo.crearImgElement("💩", true);
         this.popo.className = "position-absolute cacona invisible";
-        
-        this.estado = null;
-
         this.elementoHtml.appendChild(this.popo);
 
+        this.estado = null;
 
         parent.appendChild(this.elementoHtml);
-        
+        //Registra Actualizables
+        this.registrarHijos();
         this.idle();
     }
 
@@ -69,9 +67,9 @@ export class Fantasma extends Actualizable
     intentarAsignarEstado(nuevoEstado, forzar = false)
     {
         let rv = false;
-        if(typeof(nuevoEstado) === "object" && (forzar || this.puedeTransicionar()))
+        if(nuevoEstado instanceof Estado && (forzar || this.puedeTransicionar()))
         {
-            this.estado && this.estado.finalizar();
+            this.estado?.finalizar();
             this.estado = nuevoEstado;
             this.estado.iniciar();
             rv = true;
@@ -111,14 +109,20 @@ export class Fantasma extends Actualizable
 
     estaVivo()
     {
-        return this.estado.estaVivo();
+        return this.estado && this.estado.estaVivo();
     }
 
     actualizar(elapsed)
     {
         super.actualizar(elapsed);
-        this.estado && this.estado.actualizar(elapsed);
+        
+        this.estado?.actualizar(elapsed);
+             
+        //La felicidad es el promedio de todos los valores.
         this.felicidad.valor = (this.energia.valor + this.saciedad.valor + this.espacioEnPanza.valor)/3;
+
+        
+
     }
  
 

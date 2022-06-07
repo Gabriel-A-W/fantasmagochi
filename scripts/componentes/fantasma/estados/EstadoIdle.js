@@ -1,15 +1,14 @@
 import { Estado } from "./Estado.js";
 import { MouseTracker } from "../../../utiles/MouseTracker.js";
+import { Configs } from "../../../Configs.js";
 
 export class EstadoIdle extends Estado
 {
     constructor(fantasma)
     {
         super(fantasma);
-        
-        this.frecuenciaParpadeoApertura = 200;//ms
-        this.frecuenciaParpadeoCierre = 5000;//ms
-        this.frecuenciaParpadeo = this.frecuenciaParpadeoCierre;
+ 
+        this.frecuenciaParpadeo = Configs.DURACION_OJOS_CERRADOS;
         this.deltaParpadeo = 0;
     
     }
@@ -29,12 +28,12 @@ export class EstadoIdle extends Estado
             if (!this.fantasma.ojos.estanCerrados()) 
             {
                 this.fantasma.ojos.cerrar();
-                this.frecuenciaParpadeo = this.frecuenciaParpadeoApertura;
+                this.frecuenciaParpadeo = Configs.DURACION_OJOS_CERRADOS;
             }
             else
             {
                 this.fantasma.ojos.abrir();
-                this.frecuenciaParpadeo = this.frecuenciaParpadeoCierre;
+                this.frecuenciaParpadeo = Configs.DURACION_OJOS_ABIERTOS;
             }
             this.deltaParpadeo = 0;
         }
@@ -78,11 +77,11 @@ export class EstadoIdle extends Estado
         this.parpadear(elapsed); 
         this.moverIris();
         
-        if(this.fantasma.felicidad.valor > 80)
+        if(this.fantasma.felicidad.valor > Configs.LIMITE_INFERIOR_FELIZ)
         {
             this.fantasma.boca.sonreir();
         }
-        else if(this.fantasma.felicidad.valor < 50)
+        else if(this.fantasma.felicidad.valor < Configs.LIMITE_INFERIOR_NORMAL)
         {
             this.fantasma.boca.entristecer();
         }

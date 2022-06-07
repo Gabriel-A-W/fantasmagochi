@@ -34,5 +34,29 @@ export class FantasmaPies extends Actualizable
         
         parent.appendChild(this.elementoHtml);
     }
+
+    removeClass(str)
+    {
+        this.patitasDelanteras.forEach((p) => {
+            p.classList.remove(str);
+
+        });
+
+        this.patitasTraseras.forEach((p) => {
+            p.classList.remove(str); 
+        });
+    }
+
+    addClass(str)
+    {
+        this.patitasDelanteras.forEach((p) => {
+            p.classList.add(str);
+
+        });
+
+        this.patitasTraseras.forEach((p) => {
+            p.classList.add(str); 
+        });
+    }
     
 }

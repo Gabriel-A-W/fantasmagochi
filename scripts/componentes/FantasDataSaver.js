@@ -14,6 +14,17 @@ export class FantasDataSaver extends Actualizable
     }
 
 
+    enviar()
+    {
+        return FantasDataService.post({
+            felicidad: this.tgt.felicidad.valor,
+            saciedad: this.tgt.saciedad.valor,
+            espacioEnPanza: this.tgt.espacioEnPanza.valor,
+            energia:this.tgt.energia.valor,
+            guita: this.tgt.guita.valor
+        });
+    }
+
     actualizar(elapsed)
     {
         if(!this.esperandoActualizacion)
@@ -23,13 +34,7 @@ export class FantasDataSaver extends Actualizable
             {
                 this.delta = 0;
                 this.esperandoActualizacion = true;
-                FantasDataService.post({
-                    felicidad: this.tgt.felicidad.valor,
-                    saciedad: this.tgt.saciedad.valor,
-                    espacioEnPanza: this.tgt.espacioEnPanza.valor,
-                    energia:this.tgt.energia.valor,
-                    guita: this.tgt.guita.valor
-                }).then(()=> {this.esperandoActualizacion = false;});
+                this.enviar().then(()=> {this.esperandoActualizacion = false;});
             }
         }
     }

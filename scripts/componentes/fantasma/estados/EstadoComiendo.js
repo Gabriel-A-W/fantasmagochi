@@ -1,3 +1,4 @@
+import { Configs } from "../../../Configs.js";
 import { EstadoIdle } from "./EstadoIdle.js";
 
 export class EstadoComiendo extends EstadoIdle
@@ -6,12 +7,12 @@ export class EstadoComiendo extends EstadoIdle
     constructor(fantasma, comida)
     {
         super(fantasma); 
-        this.frecuenciaMasticado = 200;//ms
+        this.frecuenciaMasticado = Configs.DURACION_MASTICADO;//ms
         this.deltaMasticado = 0;
         this.abrir = true;
         this.comida = Object.assign({}, comida);
 
-        this.tiempoPorPunto = 5/1000;//ms
+        this.tiempoPorPunto = Configs.DELTA_MASTICADO;//ms
 
         this.relacionSO = this.comida.ocupa/this.comida.saciedad;
       

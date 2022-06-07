@@ -15,7 +15,7 @@ export class MorfiCard
             </div>
             <div class="card-footer"> 
             <input type="radio" class="btn-check" name="${nombre}" id="${id}" autocomplete="off" value="${morfi.id}" >
-            <label class="btn btn-outline-primary" for="${id}">Checked</label>
+            <label class="btn btn-outline-primary" for="${id}">Elegir</label>
           </div>
         </div></div>`;
 

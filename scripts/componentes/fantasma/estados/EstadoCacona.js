@@ -1,3 +1,4 @@
+import { Configs } from "../../../Configs.js";
 import { Estado } from "./Estado.js";
 
 export class EstadoCacona extends Estado
@@ -7,7 +8,7 @@ export class EstadoCacona extends Estado
         super(fantasma);
         this.curOffset = 0;
         this.delta = 0;
-        this.tiempoPorPunto = 20/1000;//por segundo
+        this.tiempoPorPunto = Configs.DELTA_CACONA;//por segundo
         this.difInicial = 0;  
     }
 
@@ -19,7 +20,7 @@ export class EstadoCacona extends Estado
         this.fantasma.togglePopo(true);
         this.resetPopo();
         this.fantasma.espacioEnPanza.frenarActualizacion = true;
-       // this.tiempoEstado = (100 - this.fantasma.estadisticas.espacioEnPanza) * this.tiempoPorPunto;
+      
     }
 
     resetPopo()
@@ -27,7 +28,7 @@ export class EstadoCacona extends Estado
         this.fantasma.popo.style.top = this.fantasma.pies.elementoHtml.offsetTop-30+"px";
         this.curOffset = this.fantasma.pies.elementoHtml.offsetTop;
         this.delta = (566 - this.fantasma.pies.elementoHtml.offsetTop -30);
-        console.log(this.delta);
+      
 
     }
 

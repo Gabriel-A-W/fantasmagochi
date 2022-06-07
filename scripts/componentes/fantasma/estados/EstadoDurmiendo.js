@@ -1,3 +1,4 @@
+import { Configs } from "../../../Configs.js";
 import { Estado } from "./Estado.js";
 
 export class EstadoDurmiendo extends Estado
@@ -6,11 +7,11 @@ export class EstadoDurmiendo extends Estado
     constructor(fantasma)
     {
         super(fantasma); 
-        this.frecuenciaRonquido = 800;//ms
+        this.frecuenciaRonquido = Configs.DURACION_RONQUIDO;//ms
         this.deltaRonquido = 0;
         this.abrir = true;
    
-        this.tiempoPorPunto = 3/1000;
+        this.tiempoPorPunto = Configs.DELTA_DESCANSO;
     }
 
     iniciar()

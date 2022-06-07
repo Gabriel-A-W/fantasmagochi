@@ -15,11 +15,7 @@ export class FantasmaOjoCollection extends Actualizable
         
         parent.appendChild(this.elementoHtml);
 
-        //Registro hijos
-        this.registrarHijo(this.izquierdo);
-        this.registrarHijo(this.derecho);
-
-        this.ojosArray = [this.izquierdo, this.derecho];
+        this.ojosArray = Object.freeze([this.izquierdo, this.derecho]);
     }
 
     comoArray()

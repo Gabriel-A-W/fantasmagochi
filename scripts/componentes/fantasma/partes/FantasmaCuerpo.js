@@ -12,6 +12,16 @@ export class FantasmaCuerpo extends Actualizable
         parent.appendChild(this.elementoHtml);
     }
 
+    removeClass(str)
+    {
+        this.elementoHtml.classList.remove(str);
+    }
+
+    addClass(str)
+    {
+        this.elementoHtml.classList.add(str);
+    }
+
 
     toggleEnojo()
     {

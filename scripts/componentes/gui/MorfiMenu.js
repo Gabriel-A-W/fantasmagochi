@@ -15,8 +15,9 @@ export class MorfiMenu
             <form morfi-form class="row row-cols-2 row-cols-sm-3 row-cols-md-4 g-3"></form>
             </div>
             <div class="modal-footer">
-            <p morfi-sel-data></p>
-              <button morfi-confirm type="button" class="btn btn-primary" data-bs-dismiss="modal">Comprar y alimentar</button>
+                <h5 guita-data></h5>
+                <p morfi-sel-data>Total: $0.00</p>
+                <button morfi-confirm type="button" class="btn btn-primary" data-bs-dismiss="modal">Comprar y alimentar</button>
             </div>
           </div>
         </div>
@@ -28,6 +29,7 @@ export class MorfiMenu
         this.confirmarBtn = this.elementoHtml.querySelector("button[morfi-confirm]");
         this.cerrarBtn = this.elementoHtml.querySelector("button[morfi-close]");
         this.morfiSpan = this.elementoHtml.querySelector("p[morfi-sel-data]");
+        this.guitaSpan = this.elementoHtml.querySelector("h5[guita-data]");
         this.modal = new bootstrap.Modal(this.elementoHtml);
       
         this.cargarItems();
@@ -38,8 +40,8 @@ export class MorfiMenu
     internalOnSelItemChng(selItem, check)
     {
         if(check)
-        {
-            this.morfiSpan.innerHTML = `<h5>${selItem.nombre}</h5> Total: ${selItem.precio.toFixed(2)}`;
+        { 
+            this.morfiSpan.innerHTML = `<h6>${selItem.nombre}</h6> Total: ${selItem.precio.toFixed(2)}`;
         }
     }
 
@@ -60,9 +62,11 @@ export class MorfiMenu
     }
     
 
-    show()
+    show(guita)
     {
+        this.guitaSpan.innerText = `Dinero: $${guita.toFixed(2)}`;
         return new Promise((resolve, reject) => {
+
             this.modal.show();
             this.cerrarBtn.onclick = ()=>{ reject(); };
             this.confirmarBtn.onclick = ()=> {

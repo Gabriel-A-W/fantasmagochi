@@ -18,13 +18,16 @@ body {
     height: 100vh;
     width: 50vw;
     /* border: 2px solid red;*/
+    min-height: 480px;
+    min-width: 480px;
+}
+
+.fondoCasaEmbrujada
+{
     background-image: url("http://orig08.deviantart.net/0a43/f/2012/262/6/7/grand_entry_hall_by_sanfranguy-d5f95h2.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-    min-height: 480px;
-    min-width: 480px;
-
 }
 
 
@@ -135,13 +138,15 @@ body {
 
 
 .fantasma {
-
     width: 100px;
     left: 45%;
     top: 45%;
     opacity: 0.8;
 }
 
+.fantasma.mini {
+    width: 30px !important;
+}
 
 .fantasma .cuerpo {
     border-radius: 50px 50px 0 0;
@@ -149,7 +154,6 @@ body {
     width: 100%;
     height: 150px;
     position: relative;
-
 }
 
 
@@ -160,6 +164,11 @@ body {
 .fantasma .cuerpo.muerto {
     background: linear-gradient(lightblue, #73AD21);
 }
+
+.fantasma .cuerpo.mini {
+    height:35px !important;
+}
+
 
 
 
@@ -175,6 +184,12 @@ body {
 }
 
 
+.fantasma .cuerpo .ojos.mini {
+    top: 10px !important;
+    height: 10px !important;
+}
+
+
 .fantasma .cuerpo .ojos .izquierdo {
 
     border-radius: 50px 50px 50px 50px;
@@ -187,11 +202,16 @@ body {
     position: relative;
     overflow: hidden;
 }
+.fantasma .cuerpo .ojos .izquierdo.mini {
+    height: 10px !important;
+}
+
 
 .fantasma .cuerpo .ojos .izquierdo.muerto {
     background: none;
     border: none;
 }
+
 
 .fantasma .cuerpo .ojos .izquierdo.muerto:after {
     content: "X";
@@ -216,6 +236,7 @@ body {
 .fantasma .cuerpo .ojos .derecho {
 
     border: 1px solid;
+    border-color: #000;
     border-radius: 50px 50px 50px 50px;
     background: #fff;
     width: 20%;
@@ -223,6 +244,10 @@ body {
     left: 40%;
     position: relative;
     overflow: hidden;
+}
+
+.fantasma .cuerpo .ojos .derecho.mini {
+    height: 10px !important;
 }
 
 
@@ -321,6 +346,11 @@ body {
     height: 30px;
     position: relative;
 
+}
+
+.fantasma .pies .patita.mini {
+    width: 6px;
+    height: 10px;
 }
 
 .fantasma .pies .animador-delantero {
@@ -427,3 +457,26 @@ body {
 {
     box-shadow: 0 0 20px rgba(255,0,0, 1);
 }
+
+
+.tablero-match
+{
+    width: 50%;     
+}
+
+.bloque-match:hover
+{
+    box-shadow: inset 0 0 20px rgb(255, 102, 0);
+}
+
+.match-selccionado
+{
+    animation: match-selccionado-anim 1s linear infinite;
+}
+
+
+@keyframes match-selccionado-anim {
+    /*  0%   {  box-shadow: 0 0 20px rgba(0,102,156, 1); }*/
+   50%{ box-shadow: inset 0 0 20px rgb(255, 102, 0); border-color: red!important; }    
+     /*/ 100%  { opacity: 1; }*/
+  }
